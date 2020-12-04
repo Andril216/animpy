@@ -1,1 +1,2 @@
 # animpy
+![](recording/animpy.gif)
