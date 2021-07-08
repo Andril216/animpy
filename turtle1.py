@@ -883,7 +883,7 @@ class Shape(object):
                 data = tuple(data)
         elif type_ == "image":
             if isinstance(data, str):
-                if data.lower().endswith(".gif") and isfile(data):
+                if isfile(data):
                     data = TurtleScreen._image(data)
                 # else data assumed to be Photoimage
         elif type_ == "compound":
@@ -1130,7 +1130,7 @@ class TurtleScreen(TurtleScreenBase):
         """
         if shape is None:
             # image
-            if name.lower().endswith(".gif"):
+            if True:
                 shape = Shape("image", self._image(name))
             else:
                 raise TurtleGraphicsError("Bad arguments for register_shape.\n"
