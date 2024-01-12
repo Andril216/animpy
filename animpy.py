@@ -8,7 +8,7 @@ from PIL import Image
 from tkinter import tix
 
 class App:
-    s="""self.screen.clearscreen()
+    sa="""self.screen.clearscreen()
 self.screen.listen()
 self.draw = turtle.RawTurtle(self.screen)
 self.draw.pu()
@@ -32,7 +32,7 @@ self.index=1
 self.stam=0
 self.redos=[]#
 """
-    s1=s
+    s1=sa
     k=""
     sav=1
     bh=""
@@ -266,7 +266,7 @@ May be used to draw regular polygons. Enter the three parameters one after the o
             self.func+=f"    self.draw.goto({x},{y})\n"
         else:
             self.draw.ondrag(None)
-            self.s+=f"self.draw.goto({x},{y})#\n"
+            self.sa+=f"self.draw.goto({x},{y})#\n"
             self.draw.goto(x, y)
             self.draw.ondrag(self.dragging)
         self.sav=0
@@ -277,7 +277,7 @@ May be used to draw regular polygons. Enter the three parameters one after the o
             self.func+="    self.draw.sety(self.draw.ycor()+15)\n"
         else:
             self.draw.sety(self.draw.ycor()+15)
-            self.s+="self.draw.sety(self.draw.ycor()+15)#\n"
+            self.sa+="self.draw.sety(self.draw.ycor()+15)#\n"
         self.sav=0
     def down(self):
         if(self.k!=""):
@@ -286,7 +286,7 @@ May be used to draw regular polygons. Enter the three parameters one after the o
             self.func+="    self.draw.sety(self.draw.ycor()-15)\n"
         else:
             self.draw.sety(self.draw.ycor()-15)
-            self.s+="self.draw.sety(self.draw.ycor()-15)#\n"
+            self.sa+="self.draw.sety(self.draw.ycor()-15)#\n"
         self.sav=0
     def right(self):
         if(self.k!=""):
@@ -295,7 +295,7 @@ May be used to draw regular polygons. Enter the three parameters one after the o
             self.func+="    self.draw.setx(self.draw.xcor()+15)\n"
         else:
             self.draw.setx(self.draw.xcor()+15)
-            self.s+="self.draw.setx(self.draw.xcor()+15)#\n"
+            self.sa+="self.draw.setx(self.draw.xcor()+15)#\n"
         self.sav=0
     def left(self):
         if(self.k!=""):
@@ -304,7 +304,7 @@ May be used to draw regular polygons. Enter the three parameters one after the o
             self.func+="    self.draw.setx(self.draw.xcor()-15)\n"
         else:
             self.draw.setx(self.draw.xcor()-15)
-            self.s+="self.draw.setx(self.draw.xcor()-15)#\n"
+            self.sa+="self.draw.setx(self.draw.xcor()-15)#\n"
         self.sav=0
     def fwd(self):
         if(self.k!=""):
@@ -313,7 +313,7 @@ May be used to draw regular polygons. Enter the three parameters one after the o
             self.func+="    self.draw.fd(15)\n"
         else:
             self.draw.fd(15)
-            self.s+="self.draw.fd(15)#\n"
+            self.sa+="self.draw.fd(15)#\n"
         self.sav=0
     def bwd(self):
         if(self.k!=""):
@@ -322,7 +322,7 @@ May be used to draw regular polygons. Enter the three parameters one after the o
             self.func+="    self.draw.bk(15)\n"
         else:
             self.draw.bk(15)
-            self.s+="self.draw.bk(15)#\n"
+            self.sa+="self.draw.bk(15)#\n"
         self.sav=0
     def rotlt(self):
         try:
@@ -333,7 +333,7 @@ May be used to draw regular polygons. Enter the three parameters one after the o
                 elif(self.func!=""):
                     self.func+="    self.draw.lt(int("+self.deg.get()+"))\n"+"    self.angle+=int("+self.deg.get()+")\n"
                 else:
-                    self.s+="self.draw.lt(int("+self.deg.get()+"))#\n"
+                    self.sa+="self.draw.lt(int("+self.deg.get()+"))#\n"
                     self.draw.lt(int(self.deg.get()))
                     self.headings[self.curob["text"][18:]]+=int(self.deg.get())
             else:
@@ -371,7 +371,7 @@ May be used to draw regular polygons. Enter the three parameters one after the o
                     dst_im.save("a.gif",transparency=0)
                     self.screen.addshape("a.gif")
                     self.draw.shape("a.gif")
-                    self.s+="""im=Image.open('"""+self.file+"""')
+                    self.sa+="""im=Image.open('"""+self.file+"""')
 im=im.convert('RGBA')
 self.headings[self.curob["text"][18:]]+=int("""+self.deg.get()+""")
 im=im.rotate("""+str(self.headings[self.curob["text"][18:]])+""",expand=1)
@@ -381,7 +381,7 @@ dst_im.save("a.gif",transparency=0)
 self.screen.addshape("a.gif")
 self.draw.shape("a.gif")
 """
-                    self.s+="self.draw.lt(int("+self.deg.get()+"))#\n"  
+                    self.sa+="self.draw.lt(int("+self.deg.get()+"))#\n"  
                     self.draw.lt(int(self.deg.get()))
             self.sav=0
         except:
@@ -395,7 +395,7 @@ self.draw.shape("a.gif")
                 elif(self.func!=""):
                     self.func+="    self.draw.rt(int("+self.deg1.get()+"))\n"+"    self.angle+=int("+self.deg.get()+")\n"
                 else:
-                    self.s+="self.draw.rt(int("+self.deg1.get()+"))\n"
+                    self.sa+="self.draw.rt(int("+self.deg1.get()+"))\n"
                     self.draw.rt(int(self.deg1.get()))
                     self.headings[self.curob["text"][18:]]+=360-int(self.deg.get())
             else:
@@ -433,7 +433,7 @@ self.draw.shape("a.gif")
                     dst_im.save("a.gif",transparency=0)
                     self.screen.addshape("a.gif")
                     self.draw.shape("a.gif")
-                    self.s+="""im=Image.open('"""+self.file+"""')
+                    self.sa+="""im=Image.open('"""+self.file+"""')
 im=im.convert('RGBA')
 self.headings[self.curob["text"][18:]]+=360-int("""+self.deg1.get()+""")
 im=im.rotate("""+str(self.headings[self.curob["text"][18:]])+""",expand=1)
@@ -443,7 +443,7 @@ dst_im.save("a.gif",transparency=0)
 self.screen.addshape("a.gif")
 self.draw.shape("a.gif")
 """
-                    self.s+="self.draw.rt(int("+self.deg1.get()+"))#\n"  
+                    self.sa+="self.draw.rt(int("+self.deg1.get()+"))#\n"  
                     self.draw.rt(int(self.deg1.get()))
             self.sav=0
         except:
@@ -455,7 +455,7 @@ self.draw.shape("a.gif")
             self.func+="    self.draw.st()\n"        
         else:
             self.draw.st()
-            self.s+="self.draw.st()#\n"
+            self.sa+="self.draw.st()#\n"
         self.sav=0
     def hide(self):
         if(self.k!=""):
@@ -464,7 +464,7 @@ self.draw.shape("a.gif")
             self.func+="    self.draw.st()\n"   
         else:
             self.draw.ht()
-            self.s+="self.draw.ht()#\n"
+            self.sa+="self.draw.ht()#\n"
         self.sav=0
     def stamp(self):
         if(self.k!=""):
@@ -473,7 +473,7 @@ self.draw.shape("a.gif")
             self.func+="    self.stam=self.draw.stamp()\n"
         else:
             self.stam=self.draw.stamp()
-            self.s+="self.stam=self.draw.stamp()#\n"
+            self.sa+="self.stam=self.draw.stamp()#\n"
         self.sav=0
     def clprestmp(self):
         if(self.k!=""):
@@ -482,7 +482,7 @@ self.draw.shape("a.gif")
             self.func+="    self.draw.clearstamp(self.stam)\n"
         else:
             self.draw.clearstamp(self.stam)
-            self.s+="self.draw.clearstamp(self.stam)#\n"
+            self.sa+="self.draw.clearstamp(self.stam)#\n"
         self.sav=0
     def clallstmp(self):
         if(self.k!=""):
@@ -491,7 +491,7 @@ self.draw.shape("a.gif")
             self.func+="    self.draw.clearstamps()\n"
         else:
             self.draw.clearstamps()
-            self.s+="self.draw.clearstamps()#\n"
+            self.sa+="self.draw.clearstamps()#\n"
         self.sav=0
     def goto(self):
         import random
@@ -516,10 +516,10 @@ self.draw.shape("a.gif")
                     x=random.randint(0,list(self.screen.screensize())[0])
                     y=random.randint(0,list(self.screen.screensize())[1])
                     self.draw.goto(x,y)
-                    self.s+=f"self.draw.goto({x},{y})#\n"
+                    self.sa+=f"self.draw.goto({x},{y})#\n"
                 else:
                     self.draw.goto(float(self.gotopos.get().split(",")[0]),float(self.gotopos.get().split(",")[1]))
-                    self.s+=f"self.draw.goto(float({self.gotopos.get().split(',')[0]}),float({self.gotopos.get().split(',')[1]}))#\n"
+                    self.sa+=f"self.draw.goto(float({self.gotopos.get().split(',')[0]}),float({self.gotopos.get().split(',')[1]}))#\n"
             self.sav=0
         except:
             pass
@@ -543,13 +543,13 @@ self.draw.shape("a.gif")
             else:
                 if(len(self.circpar.get().split(','))==3):
                     self.draw.circle(int(self.circpar.get().split(",")[0]),int(self.circpar.get().split(",")[1]),int(self.circpar.get().split(",")[2]))
-                    self.s+=f"self.draw.circle(int({self.circpar.get().split(',')[0]}),int({self.circpar.get().split(',')[1]}),int({self.circpar.get().split(',')[2]}))#\n"
+                    self.sa+=f"self.draw.circle(int({self.circpar.get().split(',')[0]}),int({self.circpar.get().split(',')[1]}),int({self.circpar.get().split(',')[2]}))#\n"
                 elif(len(self.circpar.get().split(','))==2):
                     self.draw.circle(int(self.circpar.get().split(',')[0]),int(self.circpar.get().split(',')[1]))
-                    self.s+=f"self.draw.circle(int({self.circpar.get().split(',')[0]}),int({self.circpar.get().split(',')[1]}))#\n"
+                    self.sa+=f"self.draw.circle(int({self.circpar.get().split(',')[0]}),int({self.circpar.get().split(',')[1]}))#\n"
                 elif(len(self.circpar.get().split(','))==1):
                     self.draw.circle(int(self.circpar.get().split(",")[0]))
-                    self.s+=f"self.draw.circle(int({self.circpar.get().split(',')[0]}))#\n"
+                    self.sa+=f"self.draw.circle(int({self.circpar.get().split(',')[0]}))#\n"
             self.sav=0
         except:
             pass
@@ -560,7 +560,7 @@ self.draw.shape("a.gif")
             self.func+="    self.draw.pd()\n"
         else:
             self.draw.pd()
-            self.s+="self.draw.pd()#\n"
+            self.sa+="self.draw.pd()#\n"
         self.sav=0
     def penup(self):
         if(self.k!=""):
@@ -569,7 +569,7 @@ self.draw.shape("a.gif")
             self.func+="    self.draw.pu()\n"
         else:
             self.draw.pu()
-            self.s+="self.draw.pu()#\n"
+            self.sa+="self.draw.pu()#\n"
         self.sav=0
     def wa(self):
         try:
@@ -579,7 +579,7 @@ self.draw.shape("a.gif")
             elif(self.func!=""):
                 self.func+="    time.sleep(float("+self.wo.get()+"))\n"
             else:
-                self.s+="time.sleep(float("+self.wo.get()+"))#\n"
+                self.sa+="time.sleep(float("+self.wo.get()+"))#\n"
             self.sav=0
         except:
             pass
@@ -592,7 +592,7 @@ self.draw.shape("a.gif")
                 self.func+=f"    self.screen.delay({self.delay.get()})\n"
             else:
                 self.screen.delay(float(self.delay.get()))
-                self.s+=f"self.screen.delay({self.delay.get()})\n"
+                self.sa+=f"self.screen.delay({self.delay.get()})\n"
             self.sav=0
         except:
             pass
@@ -605,7 +605,7 @@ self.draw.shape("a.gif")
                 self.func+=f"    self.draw.speed({self.speed.get()})\n"
             else:
                 self.draw.speed(float(self.speed.get()))
-                self.s+=f"self.draw.speed({self.speed.get()})\n"
+                self.sa+=f"self.draw.speed({self.speed.get()})\n"
             self.sav=0
         except:
             pass
@@ -620,7 +620,7 @@ self.draw.shape("a.gif")
             if(self.func==""):
                 if(len(self.bh.split("\n"))==2):
                     self.bh+=self.k+"pass\n"
-                self.s+=self.bh+"#\n"
+                self.sa+=self.bh+"#\n"
                 exec(self.bh,dict(globals(),**locals()))
             else:
                 for i in self.bh.split("\n"):
@@ -631,7 +631,7 @@ self.draw.shape("a.gif")
         def sho(x):
             self.i=0
             self.draw.shape(x)
-            self.s+="self.draw.shape('"+x+"')#\n"
+            self.sa+="self.draw.shape('"+x+"')#\n"
         def shf():
             Tk().withdraw()
             self.file=filedialog.askopenfilename(filetypes=[("png",".png"),("jpg",".jpg")])
@@ -668,7 +668,7 @@ self.draw.shape("a.gif")
                 self.screen.addshape("a.gif")
                 self.draw.shape('a.gif')
                 self.draw.ondrag(self.dragging)
-                self.s+="""im=Image.open('"""+self.file+"""')
+                self.sa+="""im=Image.open('"""+self.file+"""')
 im=im.convert('RGBA')
 im=im.rotate("""+str(self.headings[self.curob["text"][18:]])+""",expand=1)
 dst_im = Image.new("RGBA",im.size,"white")
@@ -693,7 +693,7 @@ self.draw.shape('a.gif')#
         self.draw.ondrag(self.dragging)
         self.draw.pu()
         self.curob["text"]="current object is "+x
-        self.s+=f"""self.objects[self.curob["text"][18:]]=self.draw
+        self.sa+=f"""self.objects[self.curob["text"][18:]]=self.draw
 self.objects[self.curob["text"][18:]].ondrag(None)
 self.draw=self.objects['{x}']
 self.draw.ondrag(self.dragging)
@@ -714,7 +714,7 @@ self.curob["text"]="current object is "+'{x}'#
             self.jj+=1
             self.addt.grid(row=self.jj+1)
             self.curob.grid(row=self.jj+2)
-            self.s+=f"""self.objects['{name}']=turtle.RawTurtle(self.screen)
+            self.sa+=f"""self.objects['{name}']=turtle.RawTurtle(self.screen)
 self.objects['{name}'].pu()
 ljo=len(self.objects)
 print(ljo)
@@ -727,7 +727,7 @@ self.curob.grid(row=self.jj+2)#
     def stafunc(self):
         if(self.func_name==""):
             self.func_name=self.screen.textinput(title="new function's name",prompt="enter name of new function")
-            if(self.func_name not in self.functions):
+            if((self.func_name not in self.functions) and (self.func_name!="sa")):
                 self.func="def " +self.func_name + "(self):\n"
             else:
                 self.func_name=""
@@ -737,21 +737,21 @@ self.curob.grid(row=self.jj+2)#
             if(len(self.func.split("\n"))==2):
                 self.func+="    pass"
             exec(self.func)
-            self.s+=self.func
+            self.sa+=self.func
             exec("setattr(self,'"+func_nam+"',"+func_nam+")",dict(globals(),**locals()))
-            self.s+="setattr(self,'"+func_nam+"',"+func_nam+")\n"
+            self.sa+="setattr(self,'"+func_nam+"',"+func_nam+")\n"
             self.functions.append(func_nam)
             Button(self.fg,text=self.func_name,command=lambda:self.callfunc(func_nam)).grid(row=self.jj1)
             self.jj1+=1
             self.stf.grid(row=self.jj1)
             self.stf1.grid(row=self.jj1+1)
-            self.s+=f"""self.functions.append('{func_nam}')
+            self.sa+=f"""self.functions.append('{func_nam}')
 Button(self.fg,text='{self.func_name}',command=lambda:self.callfunc('{func_nam}')).grid(row=self.jj1)
 self.jj1+=1
 self.stf.grid(row=self.jj1)
 self.stf1.grid(row=self.jj1+1)
 self.func_name=""
-self.func=""#
+self.func=""\n
 """
             self.func_name=""
             self.func=""
@@ -761,7 +761,7 @@ self.func=""#
         elif(self.func!=""):
             self.func+="    "+x+"()\n"
         else:
-            self.s+=x+"(self)#\n"
+            self.sa+=x+"(self)#\n"
             exec(f"self."+x+"(self)",dict(globals(),**locals()))
     def callfunc1(self,sz):
         if(self.k!=""):
@@ -769,18 +769,18 @@ self.func=""#
         elif(self.func!=""):
             self.func+="self."+self.keylinks[sz]+"(self)\n"
         else:
-            self.s+="self."+self.keylinks[sz]+"(self)#\n"
+            self.sa+="self."+self.keylinks[sz]+"(self)#\n"
             exec("self."+self.keylinks[sz]+"(self)",dict(globals(),**locals()))
     def key(self,x):
         self.keymenu['text']=x
-        self.s+=f"self.keymenu['text']='{x}'#\n"
+        self.sa+=f"self.keymenu['text']='{x}'#\n"
     def addkeylink(self):
         self.keylinks[self.keymenu['text']]=self.fulk.get()
-        self.s+=f"self.keylinks['{self.keymenu['text']}']='{self.fulk.get()}'\n"
+        self.sa+=f"self.keylinks['{self.keymenu['text']}']='{self.fulk.get()}'\n"
         sz=self.keymenu['text']
-        self.s+=f"sz='{self.keymenu['text']}'\n"
+        self.sa+=f"sz='{self.keymenu['text']}'\n"
         self.screen.onkey(lambda: self.callfunc1(sz),sz)
-        self.s+=f"self.screen.onkey(lambda: self.callfunc1('{sz}'),'{sz}')\n"
+        self.sa+=f"self.screen.onkey(lambda: self.callfunc1('{sz}'),'{sz}')\n"
         self.canvas.focus()
         Label(self.df,text=sz+" : "+self.keylinks[sz]).grid(row=self.fgh)
         self.fgh+=1
@@ -788,7 +788,7 @@ self.func=""#
         self.fulk.grid(row=self.fgh,column=1)
         self.keylink.grid(row=self.fgh,column=2)   
         self.screen.listen()
-        self.s+=f"""Label(self.df,text='{sz}'+" : "+self.keylinks['{sz}']).grid(row=self.fgh)
+        self.sa+=f"""Label(self.df,text='{sz}'+" : "+self.keylinks['{sz}']).grid(row=self.fgh)
 self.fgh+=1
 self.keymenu.grid(row=self.fgh,column=0)
 self.fulk.grid(row=self.fgh,column=1)
@@ -801,7 +801,7 @@ self.screen.listen()#
         elif(self.func!=""):
             self.func+="    self.screen.tracer(0)\n"
         else:
-            self.s+="self.screen.tracer(0)#\n"
+            self.sa+="self.screen.tracer(0)#\n"
             self.screen.tracer(0)
     def staani(self):
         if(self.k!=""):
@@ -809,7 +809,7 @@ self.screen.listen()#
         elif(self.func!=""):
             self.func+="    self.screen.tracer(1)\n"
         else:
-            self.s+="self.screen.tracer(1)#\n"
+            self.sa+="self.screen.tracer(1)#\n"
             self.screen.tracer(1)
     def bgpic(self):
         file1=filedialog.askopenfilename(filetypes=[("png",".png"),("jpg",".jpg")])
@@ -827,7 +827,7 @@ self.screen.listen()#
             im=Image.open(file1)
             im.save('b.gif')
             self.screen.bgpic('b.gif')
-            self.s+=f"""im=Image.open('{file1}')
+            self.sa+=f"""im=Image.open('{file1}')
 im.save('b.gif')
 self.screen.bgpic('b.gif')#
 """
@@ -838,7 +838,7 @@ self.screen.bgpic('b.gif')#
             elif(self.func!=""):
                 self.func+=f"    self.draw.pencolor('{colour}')\n"
             else:
-                self.s+=f"self.draw.pencolor('{colour}')#\n"
+                self.sa+=f"self.draw.pencolor('{colour}')#\n"
                 self.draw.pencolor(colour)
         def bgco(colour):
             if(self.k!=""):
@@ -846,7 +846,7 @@ self.screen.bgpic('b.gif')#
             elif(self.func!=""):
                 self.func+=f"    self.screen.bgcolor('{colour}')\n"
             else:
-                self.s+=f"self.screen.bgcolor('{colour}')#\n"
+                self.sa+=f"self.screen.bgcolor('{colour}')#\n"
                 self.screen.bgcolor(colour)
         qi=Toplevel()
         x = root.winfo_x()
@@ -873,7 +873,7 @@ self.screen.bgpic('b.gif')#
                 Button(scrollable_frame,text=colour,bg=colour,width=55,command=lambda colour=colour:penco(colour)).pack()
     def new(self):
         if(self.sav==1):
-            self.s=self.s1
+            self.sa=self.s1
             self.screen.clearscreen()
             exec(self.s)
             self.draw.pu()
@@ -883,7 +883,7 @@ self.screen.bgpic('b.gif')#
                 self.save()
             self.s=self.s1
             self.screen.clearscreen()
-            exec(self.s)
+            exec(self.sa)
             self.draw.pu()
     def ope(self):
         if(self.sav==1):
@@ -904,7 +904,7 @@ self.screen.bgpic('b.gif')#
         self.file=filedialog.asksaveasfilename(defaultextension="*.*",filetypes=[("animpy files",".ampy")])
         try:
             fil=open(self.file,"w")
-            fil.write(self.s)
+            fil.write(self.sa)
         except:
             pass
     def undo(self):
@@ -913,14 +913,14 @@ self.screen.bgpic('b.gif')#
         self.redos.append(xz)
         self.s="#\n".join(li)
         za=self.s
-        self.s="self.screen.tracer(0)\n"+self.s+"self.screen.tracer(1)\n"
+        self.s="self.screen.tracer(0)\n"+self.sa+"self.screen.tracer(1)\n"
         self.screen.clearscreen()
-        exec(self.s,dict(globals(),**locals()))
+        exec(self.sa,dict(globals(),**locals()))
         self.s=za
     def starun(self):
         self.screen.clearscreen()
         self.screen.listen()
-        exec(self.s,dict(globals(),**locals()))
+        exec(self.sa,dict(globals(),**locals()))
         
 if __name__ == "__main__":
     root=tix.Tk()
