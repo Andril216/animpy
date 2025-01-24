@@ -1,4 +1,3 @@
-import tkinter as tk
 from tkinter import *
 from tkinter import ttk
 from tkinter import filedialog
@@ -6,30 +5,7 @@ from tkinter import messagebox
 import turtle
 import time
 from PIL import Image
-
-class Tooltip:
-    def __init__(self, widget, text):
-        self.widget = widget
-        self.text = text
-        self.tip_window = None
-        self.widget.bind("<Enter>", self.show)
-        self.widget.bind("<Leave>", self.hide)
-
-    def show(self, event=None):
-        if self.tip_window or not self.text:
-            return
-        x, y, width, height = self.widget.winfo_rootx(), self.widget.winfo_rooty(), self.widget.winfo_width(), self.widget.winfo_height()
-        self.tip_window = Toplevel(self.widget)
-        self.tip_window.wm_overrideredirect(True)
-        self.tip_window.geometry(f"+{x + width + 10}+{y}")
-        label = Label(self.tip_window, text=self.text, justify=LEFT, wraplength=200,
-                      background="yellow", relief=SOLID, borderwidth=1, font=("tahoma", "8", "normal"))
-        label.pack(ipadx=1, ipady=1)
-
-    def hide(self, event=None):
-        if self.tip_window:
-            self.tip_window.destroy()
-            self.tip_window = None
+from tkinter import tix
 
 class App:
     sa="""self.screen.clearscreen()
@@ -151,6 +127,7 @@ self.redos=[]#
     'gray93', 'gray94', 'gray95', 'gray97', 'gray98', 'gray99']
     def __init__(self,master):
         self.master=master
+        b=tix.Balloon(self.master)
         self.tabcon=ttk.Notebook(self.master)
         self.pw=Frame(self.tabcon)
         self.tabcon.add(self.pw,text="Actions")
@@ -200,7 +177,7 @@ self.redos=[]#
         self.circpar=Entry(self.pw)
         self.circpar.grid(row=14,column=1)
         Button(self.pw,text="circle",command=self.circ).grid(row=14,column=0)
-        b= Tooltip(self.circpar, """Draw a circle with given radius. The center is radius units left of the turtle; extent – an angle – determines which
+        b.bind_widget(self.circpar, msg="""Draw a circle with given radius. The center is radius units left of the turtle; extent – an angle – determines which
 part of the circle is drawn. If extent is not given, draw the entire circle. If extent is not a full circle, one endpoint
 of the arc is the current pen position. Draw the arc in counterclockwise direction if radius is positive, otherwise in
 clockwise direction. Finally the direction of the turtle is changed by the amount of extent. As the circle is approximated
@@ -219,7 +196,7 @@ May be used to draw regular polygons. Enter the three parameters one after the o
         self.speed=Entry(self.pl)
         self.speed.grid(row=2,column=1)
         Button(self.pl,text="set object speed",command=self.spee).grid(row=2,column=0) 
-        c = Tooltip(self.speed,"enter integer from 0 to 10. 0 means no animation.")
+        b.bind_widget(self.speed,msg="enter integer from 0 to 10. 0 means no animation.")
 
         self.lo=Entry(self.nb)
         self.lo.grid(row=0,column=1)
@@ -946,6 +923,6 @@ self.screen.bgpic('b.gif')#
         exec(self.sa,dict(globals(),**locals()))
         
 if __name__ == "__main__":
-    root=tk.Tk()
+    root=tix.Tk()
     app=App(root)
     root.mainloop()
